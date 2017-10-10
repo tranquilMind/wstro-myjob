@@ -25,10 +25,10 @@
                                 <div class="input-group">
                                     <div class="input-group-btn">
                                         <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"
-                                                type="button" aria-expanded="false">用户名
+                                                type="button" aria-expanded="false">用户账号
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control" name="q_userName" placeholder="">
+                                    <input type="text" class="form-control" name="q_userCode" placeholder="">
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -90,6 +90,9 @@
                                     <thead>
                                     <tr>
                                         <th data-checkbox="true"></th>
+                                        <th data-field="userCode" data-halign="center" data-align="center"
+                                            data-sortable="true">用户账号
+                                        </th>
                                         <th data-field="username" data-halign="center" data-align="center"
                                             data-sortable="true">用户名
                                         </th>

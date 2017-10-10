@@ -12,13 +12,20 @@ $(function() {
 							validating : 'glyphicon glyphicon-refresh'
 						},
 						fields : {
-							'username' : {
+							'userCode' : {
 								validators : {
 									notEmpty : {
-										message : '用户名不能为空'
+										message : '用户账号不能为空'
 									}
 								}
 							},
+							'username' : {
+							validators : {
+								notEmpty : {
+									message : '用户名不能为空'
+								}
+							 }
+						   },
 							'mobile' : {
 								validators : {
 									notEmpty : {
@@ -175,7 +182,7 @@ function actionFormatter(e, value, row, index) {
 window.actionEvents = {
 	// 编辑
 	'click .edit' : function(e, value, row, index) {
-		user_update(index, row.userId);
+		user_update(index, row);
 	},
 	// 删除
 	'click .remove' : function(e, value, row, index) {
@@ -219,6 +226,7 @@ function user_delete(index, value) {
 // 修改用户
 function user_update(index, value) {
 	$("#title").text("修改用户");
+	getUser(value.userId);
 	layer_show("修改用户", $("#showHandle"), 800, 500);
 }
 
@@ -263,10 +271,11 @@ function del(tableName) {
 	});
 }
 
-// 新建用户
-function add(s) {
-	wstro.progressBarStartUp();
+//清空界面input
+function clearAll(){
 	$("input[name='userId']").val("");
+	$("input[name='userCode']").val("");
+	$("input[name='userCode']").attr("disabled", false);
 	$("input[name='username']").val("");
 	$("input[name='password']").val("");
 	$("input[name='email']").val("");
@@ -274,6 +283,14 @@ function add(s) {
 	$("input[name='sex'][value=" + 0 + "]").prop("checked", true); // 默认选中性别-保密
 	$("input[name='status'][value=" + 1 + "]").prop("checked", true); // 默认选中状态-正常
 	radio(); // 要重新生成样式
+	$("#role").val("");
+	$("#roleId").val("");
+}
+
+// 新建用户
+function add(s) {
+	wstro.progressBarStartUp();
+	clearAll();
 	layer_show("新建用户", $(s), 800, 500);
 	wstro.progressBarShutDown();
 }
@@ -307,7 +324,7 @@ function chooseSubmit(tableName) {
 		roleIds[i] = s[i].roleId;
 		roleNames[i] = s[i].roleName;
 	}
-    $("#roleId").val(JSON.stringify(roleIds));
+    $("#roleId").val(roleIds.join());
     $("#role").val(roleNames.join());
     layer.msg('操作成功!', {
 		icon : 1,
@@ -323,6 +340,8 @@ function getUser(userId) {
 		if (r.code === 0) {
 			user = r.user;
 			$("input[name='userId']").val(user.userId);
+			$("input[name='userCode']").val(user.userCode);
+			$("input[name='userCode']").attr("disabled", true);
 			$("input[name='username']").val(user.username);
 			$("input[name='password']").val("");
 			$("input[name='email']").val(user.email);
@@ -339,7 +358,16 @@ function getUser(userId) {
 					roleList = r.user.roleIdList[i];
 				}
 			});
-			$("input[name='role']").val(roleList);
+			var roleNameList = "";
+			$.each(r.user.roleNameList, function(i) {
+				if(roleNameList != ""){
+					roleNameList = roleNameList+"," + r.user.roleNameList[i];
+				}else{
+					roleNameList = r.user.roleNameList[i];
+				}
+			});
+			$("#roleId").val(roleList);
+			$("#role").val(roleNameList);
 			radio(); // 要重新生成样式
 		} else {
 			layer.alert(r.msg, {
