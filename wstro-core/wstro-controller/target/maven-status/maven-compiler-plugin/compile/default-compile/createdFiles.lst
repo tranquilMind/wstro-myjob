@@ -1,0 +1,10 @@
+com\wstro\controller\admin\SysRoleController.class
+com\wstro\controller\admin\SysUserController.class
+com\wstro\controller\admin\SysUserLoginLogController.class
+com\wstro\controller\MailController.class
+com\wstro\controller\admin\SysLoginController.class
+com\wstro\controller\MainsiteErrorController.class
+com\wstro\controller\admin\SysPageController.class
+com\wstro\controller\admin\SysMenuController.class
+com\wstro\controller\SysFileController.class
+com\wstro\controller\base\AbstractController.class

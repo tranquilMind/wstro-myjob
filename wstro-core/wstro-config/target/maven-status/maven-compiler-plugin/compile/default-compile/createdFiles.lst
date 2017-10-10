@@ -1,0 +1,17 @@
+com\wstro\config\MyWebAppConfigurer.class
+com\wstro\config\ProducerConfig.class
+com\wstro\config\RedisConfig.class
+com\wstro\config\QuartzConfigration.class
+com\wstro\config\ShiroConfiguration.class
+com\wstro\config\MybatisPlusConfig.class
+com\wstro\datasources\DataSourceContextHolder.class
+com\wstro\config\EhCacheConfiguration.class
+com\wstro\config\ScheduleConfig.class
+com\wstro\config\DataSourceConfig.class
+com\wstro\datasources\DataSource.class
+com\wstro\datasources\DataSourceAspect.class
+com\wstro\datasources\DynamicDataSource.class
+com\wstro\config\AlibabaFastJsonConfig.class
+com\wstro\config\SwaggerConfig.class
+com\wstro\config\FreeMarkerConfig.class
+com\wstro\config\RedisConfig$1.class

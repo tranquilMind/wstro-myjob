@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="wstro-config" />
+        <module name="wstro-controller" />
+        <module name="wstro-entity" />
+        <module name="wstro-service" />
+        <module name="wstro-shiro" />
+        <module name="wstro-task" />
+        <module name="wstro-utils" />
+        <module name="wstro-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="wstro-config" target="1.8" />
+      <module name="wstro-controller" target="1.8" />
+      <module name="wstro-core" target="1.8" />
+      <module name="wstro-entity" target="1.8" />
+      <module name="wstro-parent" target="1.8" />
+      <module name="wstro-service" target="1.8" />
+      <module name="wstro-shiro" target="1.8" />
+      <module name="wstro-task" target="1.8" />
+      <module name="wstro-utils" target="1.8" />
+      <module name="wstro-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

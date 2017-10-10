@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: wstro-shiro
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: wangwh18
+Implementation-Vendor-Id: wstro-shiro
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/wstro-parent
+ /wstro-core/wstro-shiro/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

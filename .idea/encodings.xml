@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-core" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-core/wstro-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-core/wstro-controller" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-core/wstro-entity" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-core/wstro-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-core/wstro-shiro" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-core/wstro-task" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-utils" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/wstro-web" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

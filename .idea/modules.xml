@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wstro-core/wstro-config/wstro-config.iml" filepath="$PROJECT_DIR$/wstro-core/wstro-config/wstro-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-core/wstro-controller/wstro-controller.iml" filepath="$PROJECT_DIR$/wstro-core/wstro-controller/wstro-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-core/wstro-core.iml" filepath="$PROJECT_DIR$/wstro-core/wstro-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-core/wstro-entity/wstro-entity.iml" filepath="$PROJECT_DIR$/wstro-core/wstro-entity/wstro-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-parent.iml" filepath="$PROJECT_DIR$/wstro-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-core/wstro-service/wstro-service.iml" filepath="$PROJECT_DIR$/wstro-core/wstro-service/wstro-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-core/wstro-shiro/wstro-shiro.iml" filepath="$PROJECT_DIR$/wstro-core/wstro-shiro/wstro-shiro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-core/wstro-task/wstro-task.iml" filepath="$PROJECT_DIR$/wstro-core/wstro-task/wstro-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-utils/wstro-utils.iml" filepath="$PROJECT_DIR$/wstro-utils/wstro-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wstro-web/wstro-web.iml" filepath="$PROJECT_DIR$/wstro-web/wstro-web.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,4 @@
+com\wstro\service\SysUserServiceTest.class
+com\wstro\test\AppTest.class
+com\wstro\test\RedisCacheTest.class
+com\wstro\controller\admin\SysUserControllerTest.class

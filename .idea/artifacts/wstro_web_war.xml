@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="wstro-web:war">
+    <output-path>$PROJECT_DIR$/wstro-web/target</output-path>
+    <root id="archive" name="wstro.war">
+      <element id="artifact" artifact-name="wstro-web:war exploded" />
+    </root>
+  </artifact>
+</component>
