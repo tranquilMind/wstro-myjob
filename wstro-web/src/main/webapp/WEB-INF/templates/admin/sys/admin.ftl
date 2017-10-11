@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>管理员管理</title>
+    <title>用户管理</title>
     [#include "/admin/header.ftl"]
     <link rel="stylesheet" href="${rc.contextPath}/statics/common/bootstrap-table/bootstrap-table.min.css"/>
     <link rel="stylesheet" href="${rc.contextPath}/statics/common/icheck/flat/green.css"/>
@@ -13,7 +13,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>管理员列表</h5>
+                    <h5>用户列表</h5>
 
                     <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </div>
                 </div>
@@ -53,13 +53,13 @@
                                        [@shiro.hasPermission name="sys:user:save"]
                                         <button type="button" style="margin-right:10px;" class="btn btn-primary"
                                                 title="创建管理员" onclick="add($('#showHandle'))"><i
-                                                class="glyphicon glyphicon-plus"></i> 创建管理员
+                                                class="glyphicon glyphicon-plus"></i> 创建用户
                                         </button>
                                         [/@shiro.hasPermission]
                                         [@shiro.hasPermission name="sys:user:delete"]
                                         <button type="button" style="margin-right:10px;" class="btn btn-danger"
                                                 title="批量删除管理员" onclick="del($('#table'))"><i
-                                                class="glyphicon glyphicon-remove"></i> 批量删除管理员
+                                                class="glyphicon glyphicon-remove"></i> 批量删除用户
                                         </button>
                                         [/@shiro.hasPermission]
                                     </div>
