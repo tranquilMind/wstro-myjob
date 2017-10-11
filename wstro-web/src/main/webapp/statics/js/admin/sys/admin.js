@@ -225,9 +225,8 @@ function user_delete(index, value) {
 
 // 修改用户
 function user_update(index, value) {
-	$("#title").text("修改用户");
 	getUser(value.userId);
-	layer_show("修改用户", $("#showHandle"), 800, 500);
+	layer_show("修改用户", $("#showHandle"), 800, 620);
 }
 
 /**
@@ -278,6 +277,7 @@ function clearAll(){
 	$("input[name='userCode']").attr("disabled", false);
 	$("input[name='username']").val("");
 	$("input[name='password']").val("");
+	$("input[name='password']").attr("disabled", false);
 	$("input[name='email']").val("");
 	$("input[name='mobile']").val("");
 	$("input[name='sex'][value=" + 0 + "]").prop("checked", true); // 默认选中性别-保密
@@ -291,7 +291,7 @@ function clearAll(){
 function add(s) {
 	wstro.progressBarStartUp();
 	clearAll();
-	layer_show("新建用户", $(s), 800, 500);
+	layer_show("新建用户", $(s), 800, 620);
 	wstro.progressBarShutDown();
 }
 
@@ -299,7 +299,7 @@ var layerIndex =0;
 //选择角色
 function chooseRole(str) {
 	wstro.progressBarStartUp();
-	layer_show("角色列表", $(str), 800, 500);
+	layer_show("角色列表", $(str), 800, 620);
 	layerIndex = layer.index;
 	wstro.progressBarShutDown();
 }
@@ -343,7 +343,8 @@ function getUser(userId) {
 			$("input[name='userCode']").val(user.userCode);
 			$("input[name='userCode']").attr("disabled", true);
 			$("input[name='username']").val(user.username);
-			$("input[name='password']").val("");
+			$("input[name='password']").val(user.password);
+			$("input[name='password']").attr("disabled", true);
 			$("input[name='email']").val(user.email);
 			$("input[name='mobile']").val(user.mobile);
 			$("input[name='sex'][value=" + user.sex + "]")
@@ -390,8 +391,8 @@ function saveOrUpdate(e) {
 	var userId = $("input[name='userId']").val();
 	userId = userId == "" ? null : userId;
 	var params = "";
-	var roleList = $("input[name='role']").val();
-	if (null == roleList || roleList == 0) {
+	var roleList = $("input[name='roleId']").val();
+	if (null == roleList || roleList == '') {
 		layer.alert('请为用户赋予至少一个角色', {
 			icon : 2
 		});

@@ -3230,6 +3230,9 @@ table.table-mail tr td {
 .text-danger {
 	color: #ed5565;
 }
+.text-prems {
+	color: #59f893;
+}
 .text-muted {
 	color: #888888;
 }

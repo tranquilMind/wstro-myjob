@@ -43,19 +43,21 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 	@Transactional
 	public void save(SysRoleEntity role) {
 		baseMapper.insert(role);
-		// 保存角色与菜单关系
-		sysRoleMenuService.saveOrUpdate(role.getRoleId(), role.getMenuIdList());
 	}
 
 	@Override
 	@Transactional
 	public void update(SysRoleEntity role) {
 		baseMapper.updateNoMapper(role);
+	}
 
+	@Override
+	@Transactional
+	public void updateRolePrems(SysRoleEntity role) {
 		// 更新角色与菜单关系
 		sysRoleMenuService.saveOrUpdate(role.getRoleId(), role.getMenuIdList());
 	}
-
+	
 	@Override
 	@Transactional
 	public void deleteBatch(Long[] roleIds) {
@@ -63,14 +65,14 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 	}
 
 	@Override
-	public Page<SysRoleEntity> queryListByPage(Integer offset, Integer limit, String roleName, String sort,
+	public Page<SysRoleEntity> queryListByPage(Integer offset, Integer limit, String roleCode, String sort,
 			Boolean order) {
 		Wrapper<SysRoleEntity> wrapper = new EntityWrapper<SysRoleEntity>();
 		if (StringUtils.isNoneBlank(sort) && null != order) {
 			wrapper.orderBy(sort, order);
 		}
-		if (StringUtils.isNoneBlank(roleName)) {
-			wrapper.like("role_name", roleName);
+		if (StringUtils.isNoneBlank(roleCode)) {
+			wrapper.like("role_code", roleCode);
 		}
 		Page<SysRoleEntity> page = new Page<>(offset, limit);
 		return this.selectPage(page, wrapper);

@@ -15,6 +15,13 @@ $(function() {
 					}
 				}
 			},
+			'roleCode' : {
+				validators : {
+					notEmpty : {
+						message : '角色编码不能为空'
+					}
+				}
+			},
 			'remark' : {
 				validators : {
 					notEmpty : {
@@ -29,39 +36,38 @@ $(function() {
 var handle = $("#handle");
 var data_update = $(handle).attr("data-update");
 var data_delete = $(handle).attr("data-delete");
+var data_perms = $(handle).attr("data-perms");
 // BootStrapTable自定义操作
 function actionFormatter(value, row, index) {
-	if (null == data_update && null == data_delete) {
-		return "";
-	} else if (null == data_update && null != data_delete) {
-		return [
-				'<a class="remove text-danger" href="javascript:void(0)" title="删除">',
-				'<i class="glyphicon glyphicon-remove"></i>删除', '</a>' ]
-				.join('');
-	} else if (null != data_update && null == data_delete) {
-		return [
-				'<a class="edit text-warning" href="javascript:void(0)" title="编辑">',
-				'<i class="glyphicon glyphicon-edit"></i>编辑', '</a>' ].join('');
-	} else {
-		return [
-				'<a class="edit m-r-sm text-warning" href="javascript:void(0)" title="编辑">',
-				'<i class="glyphicon glyphicon-edit"></i>编辑',
-				'</a>',
-				'<a class="remove text-danger" href="javascript:void(0)" title="删除">',
-				'<i class="glyphicon glyphicon-remove"></i>删除', '</a>' ]
-				.join('');
+	var result = new Array();
+	if (null != data_update) {
+		result[0] = '<a class="edit text-warning" href="javascript:void(0)" title="编辑">'
+				+ '<i class="glyphicon glyphicon-edit"></i>编辑' + '</a> ';
 	}
+	if (null != data_delete) {
+		result[1] = '<a class="remove text-danger" href="javascript:void(0)" title="删除">'
+				+ '<i class="glyphicon glyphicon-remove"></i>删除' + '</a> ';
+	}
+	if (null != data_perms) {
+		result[2] = '<a class="accredit text-prems" href="javascript:void(0)" title="授权">'
+				+ '<i class="glyphicon glyphicon-cog"></i>授权' + '</a>';
+	}
+	return result.join('');
 }
 
 // Table操作
 window.actionEvents = {
 	// 编辑
 	'click .edit' : function(e, value, row, index) {
-		role_update(index, row.roleId);
+		role_update(index, row);
 	},
 	// 删除
 	'click .remove' : function(e, value, row, index) {
 		role_delete(index, row.roleId);
+	},
+	// 授权
+	'click .accredit' : function(e, value, row, index) {
+		role_accredit(index, row.roleId);
 	}
 };
 
@@ -102,8 +108,18 @@ function role_delete(index, value) {
  * 修改角色
  */
 function role_update(index, value) {
-	$("#title").text("修改角色");
-	layer_show("修改角色", $("#showHandle"), 800, 500);
+	layer_show("修改角色", $("#showHandle"), 500, 400);
+	$("input[name='roleCode']").val(value.roleCode);
+	$("input[name='roleName']").val(value.roleName);
+	$("input[name='remark']").val(value.remark);
+	getMenuTree(value.roleId);
+}
+
+/*
+ * 角色授权
+ */
+function role_accredit(index, value) {
+	layer_show("角色授权", $("#accreditMenu"), 800, 620);
 	getMenuTree(value);
 }
 
@@ -153,15 +169,51 @@ function del(tableName) {
  */
 function saveOrUpdate(e) {// 获取选择的菜单
 	loadingButton($(e));
-
 	if (!validateForm($("#form"))) {
 		return false;
 	}
-
 	var roleId = $("input[name='roleId']").val();
 	roleId = roleId == "" ? null : roleId;
+	var roleCode = $("input[name='roleCode']").val();
 	var roleName = $("input[name='roleName']").val();
 	var remark = $("input[name='remark']").val();
+	var url = roleId == null ? "role/save" : "role/update";
+	$.ajax({
+		type : "POST",
+		url : url,
+		headers : {
+			'Content-Type' : 'application/x-www-form-urlencoded'
+		},
+		data : {
+			roleId : roleId,
+			roleCode : roleCode,
+			roleName : roleName,
+			remark : remark
+		},
+		success : function(r) {
+			if (r.code === 0) {
+				layer.msg('操作成功!', {
+					icon : 1,
+					time : 1000
+				}, function() {
+					location.reload();
+				});
+			} else {
+				layer.alert(r.msg, {
+					icon : 2
+				});
+			}
+		}
+	});
+}
+
+/**
+ * 授权操作
+ */
+function addPrems(e) {
+	loadingButton($(e));
+	var roleId = $("#roleId").val();
+	roleId = roleId == "" ? null : roleId;
 	var nodes = ztree.getCheckedNodes(true);
 	var menuIdList = new Array();
 	for (var i = 0; i < nodes.length; i++) {
@@ -173,7 +225,7 @@ function saveOrUpdate(e) {// 获取选择的菜单
 		});
 		return false;
 	}
-	var url = roleId == null ? "role/save" : "role/update";
+	var url = "role/prems";
 	$.ajax({
 		type : "POST",
 		url : url,
@@ -182,8 +234,6 @@ function saveOrUpdate(e) {// 获取选择的菜单
 		},
 		data : {
 			roleId : roleId,
-			roleName : roleName,
-			remark : remark,
 			menuIds : JSON.stringify(menuIdList)
 		},
 		success : function(r) {
@@ -205,12 +255,11 @@ function saveOrUpdate(e) {// 获取选择的菜单
 
 // 新建角色
 function add(s) {
-	$("#title").text("新建角色");
 	$("input[name='roleId']").val("");
+	$("input[name='roleCode']").val("");
 	$("input[name='roleName']").val("");
 	$("input[name='remark']").val("");
-	layer_show("新建角色", $(s), 800, 500);
-	getMenuTree(null);
+	layer_show("新建角色", $(s), 500, 400);
 }
 
 var setting = {
@@ -264,8 +313,6 @@ function getRole(roleId) {
 				}
 				ztree.checkNode(node, true, false);
 			}
-			$("input[name='roleName']").val(r.role.roleName);
-			$("input[name='remark']").val(r.role.remark);
 			$("input[name='roleId']").val(r.role.roleId);
 		} else {
 			layer.alert(r.msg, {

@@ -5,8 +5,8 @@
 	<select id="queryList" resultType="SysRoleEntity">
 		select * from sys_role
 		<where>
-			<if test="roleName != null and roleName.trim() != ''">
-				and `role_name` like concat('%',#{roleName},'%')
+			<if test="roleCode != null and roleCode.trim() != ''">
+				and `role_code` like concat('%',#{roleCode},'%')
 			</if>
 		</where>
 		order by role_id asc
@@ -18,6 +18,7 @@
 	<update id="updateNoMapper" parameterType="SysRoleEntity">
 		update sys_role
 		<set>
+		     <if test="roleCode != null">`role_code` = #{roleCode}, </if>
 			<if test="roleName != null">`role_name` = #{roleName}, </if>
 			<if test="remark != null">`remark` = #{remark}</if>
 		</set>

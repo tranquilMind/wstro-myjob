@@ -139,23 +139,21 @@ public class SysUserController extends AbstractController {
 	@RequestMapping("/update")
 	@ResponseBody
 	@RequiresPermissions("sys:user:update")
-	public R update(SysUserEntity user, @RequestParam("role") Long[] roles) {
-		if (roles.length < 1) {
+	public R update(SysUserEntity user, @RequestParam("roleId") String[] roleIds) {
+		if(roleIds == null || roleIds.length<1) {
 			return R.error("请为用户赋予至少一个权限");
 		}
 		SysUserEntity userentity = sysUserService.selectById(user.getUserId());
-		if (!user.getPassword().trim().equals("")) {
-			user.setPassword(user.getPassword());
-		}
+		List<String> roleStr = new ArrayList<String>();	
+		Collections.addAll(roleStr, roleIds);
 		List<Long> roleIdList = new ArrayList<Long>();
-		Collections.addAll(roleIdList, roles);
+		for (String str : roleStr) {
+			roleIdList.add(Long.valueOf(str));
+		}
 		user.setRoleIdList(roleIdList);
 		user.setCreateTime(userentity.getCreateTime());
 		user.setLastLoginIp(userentity.getLastLoginIp());
 		user.setLastLoginTime(userentity.getLastLoginTime());
-		if (StringUtils.isBlank(user.getUsername())) {
-			return R.error("用户名不能为空");
-		}
 		if (getAdminId().equals(user.getUserId())) {
 			if (user.getStatus().equals(0)) {
 				ShiroUtils.logout(); // 退出

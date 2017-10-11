@@ -15,8 +15,7 @@
                 <div class="ibox-title">
                     <h5>管理员列表</h5>
 
-                    <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a
-                            class="close-link"><i class="fa fa-times"></i></a></div>
+                    <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </div>
                 </div>
                 <div class="ibox-content form-horizontal">
                     <div class="row row-lg">
@@ -237,14 +236,10 @@
 <div id="showRoleList" style="display:none;">
     <div class="col-sm-12">
         <div class="ibox float-e-margins">
-           <div class="ibox-title">
-                <h5><span id="title">选择角色<span><small></small></h5>
-                <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> </div>
-            </div>
             <div class="ibox-content form-horizontal">
                     <table id="Roletable"
                                   data-toggle="table"
-                                  data-height="300"
+                                  data-height="600"
                                   data-search="true"
                                   data-show-refresh="true"
                                   data-search-on-enter-key="true"

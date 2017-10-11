@@ -12,9 +12,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>角色列表</h5>
-
-                    <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a
-                            class="close-link"><i class="fa fa-times"></i></a></div>
+                    <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></div>
                 </div>
                 <div class="ibox-content">
                     <div class="row row-lg">
@@ -61,6 +59,9 @@
                                     <thead>
                                     <tr>
                                         <th data-checkbox="true"></th>
+                                        <th data-field="roleCode" data-halign="center" data-align="center"
+                                            data-sortable="true">角色编码
+                                        </th>
                                         <th data-field="roleName" data-halign="center" data-align="center"
                                             data-sortable="true">角色名称
                                         </th>
@@ -78,7 +79,8 @@
                                     </table>
                                     <input type='hidden' id="handle"
                                          [@shiro.hasPermission name="sys:role:update" ] data-update="true" [/@shiro.hasPermission]
-                                         [@shiro.hasPermission name="sys:role:delete"]  data-delete="true"[/@shiro.hasPermission]/>
+                                         [@shiro.hasPermission name="sys:role:delete"]  data-delete="true"[/@shiro.hasPermission]
+                                         [@shiro.hasPermission name="sys:menu:perms"]  data-perms="true"[/@shiro.hasPermission]/>
                                 </div>
                             </div>
                         </div>
@@ -92,17 +94,19 @@
 <div id="showHandle" style="display:none;">
     <div class="col-sm-12">
         <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5><span id="title">创建角色<span><small></small></h5>
-                <div class="ibox-tools"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a> <a
-                        class="close-link"><i class="fa fa-times"></i></a></div>
-            </div>
             <div class="ibox-content form-horizontal">
                 <form id="form">
                     <input type='hidden' name="roleId"/>
-
                     <div class="form-group m-t">
-                        <label class="col-sm-2 col-xs-offset-1 control-label">角色名称：</label>
+                        <label class="col-sm-3 control-label">角色编码：</label>
+
+                        <div class="col-sm-6">
+                            <input type="text" maxlength="10" class="form-control" name="roleCode">
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group m-t">
+                        <label class="col-sm-3 control-label">角色名称：</label>
 
                         <div class="col-sm-6">
                             <input type="text" maxlength="10" class="form-control" name="roleName">
@@ -110,13 +114,31 @@
                     </div>
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
-                        <label class="col-sm-2 col-xs-offset-1 control-label">备注：</label>
+                        <label class="col-sm-3 control-label">备注：</label>
 
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="remark">
                         </div>
                     </div>
                     <div class="hr-line-dashed"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12 text-center">
+                            <button type="button" class="btn btn-success" onclick="saveOrUpdate(this);">提交
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="accreditMenu" style="display:none;">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content form-horizontal">
+                <form id="accreditForm">
+                    <input type='hidden' id="roleId" name="roleId"/>                 
                     <div class="form-group">
                         <label class="col-sm-2 col-xs-offset-1 control-label">授权：</label>
 
@@ -127,7 +149,7 @@
                     <div class="hr-line-dashed"></div>
                     <div class="form-group">
                         <div class="col-sm-12 text-center">
-                            <button type="button" class="btn btn-success" onclick="saveOrUpdate(this);">提交
+                            <button type="button" class="btn btn-success" onclick="addPrems(this);">提交
                             </button>
                         </div>
                     </div>
@@ -149,7 +171,7 @@
 <!-- 自定义js -->
 <script src="${rc.contextPath}/statics/js/admin/sys/role.js"></script>
 [#-- 自定义搜索框placeholder --]
-[#assign searchText="角色名称"]
+[#assign searchText="角色编码"]
 [#include "/admin/bootstrapcommon.ftl"]
 [#-- 页面加载进度条 --]
 [#assign parentName="#row"][#-- 默认为Body --]

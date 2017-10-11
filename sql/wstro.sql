@@ -46,15 +46,17 @@ insert  into `sys_menu`(`menu_id`,`parent_id`,`name`,`url`,`perms`,`type`,`icon`
 (7,2,'修改','','sys:user:update,sys:role:select',2,'',0),
 (8,2,'删除',NULL,'sys:user:delete',2,NULL,0),
 (9,3,'查看',NULL,'sys:role:list,sys:role:info',2,NULL,0),
-(10,3,'新增',NULL,'sys:role:save,sys:menu:perms',2,NULL,0),
-(11,3,'修改',NULL,'sys:role:update,sys:menu:perms',2,NULL,0),
+(10,3,'新增',NULL,'sys:role:save',2,NULL,0),
+(11,3,'修改',NULL,'sys:role:update',2,NULL,0),
 (12,3,'删除',NULL,'sys:role:delete',2,NULL,0),
-(13,4,'查看',NULL,'sys:menu:list,sys:menu:info',2,NULL,0),
-(14,4,'新增',NULL,'sys:menu:save,sys:menu:select',2,NULL,0),
-(15,4,'修改',NULL,'sys:menu:update,sys:menu:select',2,NULL,0),
-(16,4,'删除',NULL,'sys:menu:delete',2,NULL,0),
-(17,1,'监控管理','druid/index.html','druid:druid:manager',1,'fa fa-cogs',3),
-(18,1,'Swagger管理','swagger-ui.html','swaggerui:swaggerui:manager',1,'fa fa-diamond',4);
+(13,3,'授权',NULL,'sys:menu:perms',2,NULL,0),
+
+(14,4,'查看',NULL,'sys:menu:list,sys:menu:info',2,NULL,0),
+(15,4,'新增',NULL,'sys:menu:save,sys:menu:select',2,NULL,0),
+(16,4,'修改',NULL,'sys:menu:update,sys:menu:select',2,NULL,0),
+(17,4,'删除',NULL,'sys:menu:delete',2,NULL,0),
+(18,1,'监控管理','druid/index.html','druid:druid:manager',1,'fa fa-cogs',3),
+(19,1,'Swagger管理','swagger-ui.html','swaggerui:swaggerui:manager',1,'fa fa-diamond',4);
 
 /*Table structure for table `sys_role` */
 
@@ -62,16 +64,18 @@ DROP TABLE IF EXISTS `sys_role`;
 
 CREATE TABLE `sys_role` (
   `role_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `role_code` varchar(100) DEFAULT NOT NULL COMMENT '角色编码',
   `role_name` varchar(100) DEFAULT NULL COMMENT '角色名称',
   `remark` varchar(100) DEFAULT NULL COMMENT '备注',
   `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
-  PRIMARY KEY (`role_id`)
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `role_code` (`role_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='角色';
 
 /*Data for the table `sys_role` */
 
-insert  into `sys_role`(`role_id`,`role_name`,`remark`,`create_time`) values 
-(13,'admin','admina',1498801511);
+insert  into `sys_role`(`role_id`,`role_code`,`role_name`,`remark`,`create_time`) values 
+(13,'admin','admin','admina',1498801511);
 
 /*Table structure for table `sys_role_menu` */
 
@@ -104,7 +108,7 @@ DROP TABLE IF EXISTS `sys_user`;
 
 CREATE TABLE `sys_user` (
   `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userCode` varchar(50) NOT NULL COMMENT '用户账号',
+  `user_code` varchar(50) NOT NULL COMMENT '用户账号',
   `username` varchar(50) DEFAULT NULL COMMENT '用户名',
   `password` varchar(100) DEFAULT NULL COMMENT '密码',
   `sex` tinyint(1) DEFAULT '0' COMMENT '性别 0=保密/1=男/2=女',
@@ -116,12 +120,12 @@ CREATE TABLE `sys_user` (
   `status` tinyint(4) DEFAULT NULL COMMENT '状态  0：禁用   1：正常',
   `create_time` int(11) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `userCode` (`userCode`)
+  UNIQUE KEY `user_code` (`user_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='系统用户';
 
 /*Data for the table `sys_user` */
 
-insert  into `sys_user`(`user_id`,`userCode`,`username`,`password`,`sex`,`email`,`mobile`,`last_login_time`,`last_login_ip`,`avatar_url`,`status`,`create_time`) values 
+insert  into `sys_user`(`user_id`,`user_code`,`username`,`password`,`sex`,`email`,`mobile`,`last_login_time`,`last_login_ip`,`avatar_url`,`status`,`create_time`) values 
 (1,'admin','管理员','8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918',0,'2434387555@qq.com','13647910242',1500018856,'192.168.1.88','upload/adminAvatar/201707/1499675749475head.jpg',1,1498801511),
 (7,'lastone','测试账号','d50b4c0cab140a3310e256d86fd3cd33c02f145635df4694e71df062c1679a8f',2,'asd@qq.com','13456465465',1499069279,'192.168.1.88','upload/adminAvatar/201707/1499675749475head.jpg',1,1499069190),
 (8,'joey','朱迪','bfef4adc39f01b033fe749bb5f28f10b581fef319d34445d21a7bc63fe732fa3',2,'2434387555@qq.com','13647910412',1499670576,'192.168.1.88','upload/adminAvatar/201707/1499675749475head.jpg',0,1499410874);
@@ -420,7 +424,3 @@ insert  into `sys_user_role`(`id`,`user_id`,`role_id`) values
 (72,8,13),
 (73,7,13);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

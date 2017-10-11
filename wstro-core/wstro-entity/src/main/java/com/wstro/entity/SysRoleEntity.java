@@ -2,6 +2,9 @@ package com.wstro.entity;
 
 import java.io.Serializable;
 import java.util.List;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -24,6 +27,13 @@ public class SysRoleEntity implements Serializable {
 	@TableId(type = IdType.AUTO)
 	private Long roleId;
 
+	/**
+	 * 角色编码
+	 */
+	@TableField
+	@NotEmpty(message = "角色编码不能为空")
+	private String roleCode;
+	
 	/**
 	 * 角色名称
 	 */
@@ -84,4 +94,13 @@ public class SysRoleEntity implements Serializable {
 	public void setMenuIdList(List<Long> menuIdList) {
 		this.menuIdList = menuIdList;
 	}
+
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
+	
 }

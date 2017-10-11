@@ -50,19 +50,27 @@ public interface SysRoleService extends IService<SysRoleEntity> {
 	void update(SysRoleEntity role);
 
 	/**
+	 * 更新角色的权限
+	 * 
+	 * @param role
+	 *            SysRoleEntity
+	 */
+	void updateRolePrems(SysRoleEntity role);
+	
+	/**
 	 * 查询角色列表
 	 * 
 	 * @param offset
 	 *            开始
 	 * @param limit
 	 *            条数
-	 * @param roleName
-	 *            角色名
+	 * @param roleCode
+	 *            角色编码
 	 * @param sort
 	 *            排序字段
 	 * @param order
 	 *            是否为升序
 	 * @return Page<SysRoleEntity>
 	 */
-	Page<SysRoleEntity> queryListByPage(Integer offset, Integer limit, String roleName, String sort, Boolean order);
+	Page<SysRoleEntity> queryListByPage(Integer offset, Integer limit, String roleCode, String sort, Boolean order);
 }

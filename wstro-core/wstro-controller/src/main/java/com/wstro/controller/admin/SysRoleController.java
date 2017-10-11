@@ -96,23 +96,15 @@ public class SysRoleController extends AbstractController {
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:role:save")
-	public R save(String roleName, String remark, @RequestParam("menuIds") String ids) throws ParseException {
-		if (StringUtils.isBlank(roleName)) {
-			return R.error("角色名称不能为空");
+	public R save(String roleCode,String roleName, String remark) throws ParseException {
+		if (StringUtils.isBlank(roleCode)) {
+			return R.error("角色编码不能为空");
 		}
 		SysRoleEntity roleEntity = new SysRoleEntity();
 		roleEntity.setRoleName(roleName);
+		roleEntity.setRoleCode(roleCode);
 		roleEntity.setRemark(remark);
 		roleEntity.setCreateTime(JoeyUtil.stampDate(new Date(), DateUtils.DATE_TIME_PATTERN));
-
-		JSONArray jsonArray = JSONArray.parseArray(ids);
-		Long[] menuId = toArrays(jsonArray);
-		List<Long> menuIds = new ArrayList<Long>();
-		Collections.addAll(menuIds, menuId);
-		if (menuIds.size() < 0) {
-			return R.error("请为角色授权");
-		}
-		roleEntity.setMenuIdList(menuIds);
 		sysRoleService.save(roleEntity);
 		return R.ok();
 	}
@@ -122,15 +114,32 @@ public class SysRoleController extends AbstractController {
 	 */
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:role:update")
-	public R update(Long roleId, String roleName, String remark, @RequestParam("menuIds") String ids) {
-		if (StringUtils.isBlank(roleName)) {
-			return R.error("角色名称不能为空");
+	public R update(Long roleId,String roleCode, String roleName, String remark) {
+		if (StringUtils.isBlank(roleCode)) {
+			return R.error("角色编码不能为空");
 		}
 		SysRoleEntity roleEntity = new SysRoleEntity();
 		roleEntity.setRoleId(roleId);
+		roleEntity.setRoleCode(roleCode);
 		roleEntity.setRoleName(roleName);
 		roleEntity.setRemark(remark);
+		sysRoleService.update(roleEntity);
+		return R.ok();
+	}
 
+	/**
+	 * 角色授权
+	 * 
+	 * @throws ParseException
+	 */
+	@RequestMapping("/prems")
+	@RequiresPermissions("sys:menu:perms")
+	public R save(Long roleId, @RequestParam("menuIds") String ids) throws ParseException {
+		if (roleId == null ) {
+			return R.error("角色id不能为空");
+		}
+		SysRoleEntity roleEntity = new SysRoleEntity();
+		roleEntity.setRoleId(roleId);
 		JSONArray jsonArray = JSONArray.parseArray(ids);
 		Long[] menuId = toArrays(jsonArray);
 		List<Long> menuIds = new ArrayList<Long>();
@@ -139,12 +148,10 @@ public class SysRoleController extends AbstractController {
 			return R.error("请为角色授权");
 		}
 		roleEntity.setMenuIdList(menuIds);
-
-		sysRoleService.update(roleEntity);
-
+		sysRoleService.updateRolePrems(roleEntity);
 		return R.ok();
 	}
-
+	
 	/**
 	 * 删除角色
 	 */

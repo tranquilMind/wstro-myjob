@@ -233,7 +233,7 @@ function layer_show(title, element, w, h) {
 	}
 	layer.open({
 		type : 1,
-		area : [ w + 'px', '90%' ],
+		area : [ w + 'px', h+ 'px' ],
 		shadeClose : true,
 		shade : 0.2,
 		anim : 1, // 0-6的动画形式，-1不开启
