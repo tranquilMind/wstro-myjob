@@ -80,12 +80,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 	@Override
 	@Transactional
 	public void updateUser(SysUserEntity entity) {
-		if (StringUtils.isBlank(entity.getPassword())) {
-			entity.setPassword(null);
-		} else {
-
-			entity.setPassword(new Sha256Hash(entity.getPassword()).toHex());
-		}
 		dao.updateUser(entity);
 		// 保存用户与角色关系
 		sysUserRoleService.saveOrUpdate(entity.getUserId(), entity.getRoleIdList());

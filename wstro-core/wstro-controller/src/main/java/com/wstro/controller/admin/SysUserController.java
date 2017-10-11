@@ -151,6 +151,7 @@ public class SysUserController extends AbstractController {
 			roleIdList.add(Long.valueOf(str));
 		}
 		user.setRoleIdList(roleIdList);
+		user.setPassword(userentity.getPassword());
 		user.setCreateTime(userentity.getCreateTime());
 		user.setLastLoginIp(userentity.getLastLoginIp());
 		user.setLastLoginTime(userentity.getLastLoginTime());

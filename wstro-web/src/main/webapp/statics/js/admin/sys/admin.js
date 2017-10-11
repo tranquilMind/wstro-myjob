@@ -299,7 +299,7 @@ var layerIndex =0;
 //选择角色
 function chooseRole(str) {
 	wstro.progressBarStartUp();
-	layer_show("角色列表", $(str), 800, 620);
+	layer_show("角色列表", $(str), 700, 550);
 	layerIndex = layer.index;
 	wstro.progressBarShutDown();
 }
@@ -343,7 +343,7 @@ function getUser(userId) {
 			$("input[name='userCode']").val(user.userCode);
 			$("input[name='userCode']").attr("disabled", true);
 			$("input[name='username']").val(user.username);
-			$("input[name='password']").val(user.password);
+			$("input[name='password']").val("********************");
 			$("input[name='password']").attr("disabled", true);
 			$("input[name='email']").val(user.email);
 			$("input[name='mobile']").val(user.mobile);

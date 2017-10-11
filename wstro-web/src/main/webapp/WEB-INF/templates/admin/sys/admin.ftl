@@ -239,14 +239,13 @@
             <div class="ibox-content form-horizontal">
                     <table id="Roletable"
                                   data-toggle="table"
-                                  data-height="600"
+                                  data-height="350"
                                   data-search="true"
                                   data-show-refresh="true"
                                   data-search-on-enter-key="true"
                                   data-url="${rc.contextPath}/admin/sys/role/list" [#-- 服务器数据URL --]
                                   data-pagination="true"
-                                  data-page-size="2"
-                                  data-page-list="[2, 5, 10, 20]"
+                                  data-page-size="5"
                                   data-side-pagination="server"
                                   data-striped="true"
                                   data-pagination="true"

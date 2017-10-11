@@ -343,7 +343,7 @@ function getUser(userId) {
 			$("input[name='userCode']").val(user.userCode);
 			$("input[name='userCode']").attr("disabled", true);
 			$("input[name='username']").val(user.username);
-			$("input[name='password']").val(user.password);
+			$("input[name='password']").val("********************");
 			$("input[name='password']").attr("disabled", true);
 			$("input[name='email']").val(user.email);
 			$("input[name='mobile']").val(user.mobile);

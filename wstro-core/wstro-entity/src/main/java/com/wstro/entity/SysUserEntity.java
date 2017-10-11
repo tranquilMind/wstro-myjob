@@ -43,7 +43,7 @@ public class SysUserEntity implements Serializable {
 	 * 密码
 	 */
 	@TableField
-	private transient String password;
+	private String password;
 
 	/**
 	 * 性别 0=保密/1=男/2=女
