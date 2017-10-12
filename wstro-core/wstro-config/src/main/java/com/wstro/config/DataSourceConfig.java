@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,7 +15,6 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import com.alibaba.druid.filter.Filter;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -120,8 +117,8 @@ public class DataSourceConfig {
 		// IP黑名单 (存在共同时，deny优先于allow) : 如果满足deny的话提示:Sorry, you are not
 		// permitted to view this page.
 		// 登录查看信息的账号密码.
-		servletRegistrationBean.addInitParameter("loginUsername", "joey");
-		servletRegistrationBean.addInitParameter("loginPassword", "jay");
+		servletRegistrationBean.addInitParameter("loginUsername", "admin");
+		servletRegistrationBean.addInitParameter("loginPassword", "admin");
 		// 是否能够重置数据.
 		servletRegistrationBean.addInitParameter("resetEnable", "false");
 		return servletRegistrationBean;

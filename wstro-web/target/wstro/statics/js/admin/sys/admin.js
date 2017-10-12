@@ -299,7 +299,7 @@ var layerIndex =0;
 //选择角色
 function chooseRole(str) {
 	wstro.progressBarStartUp();
-	layer_show("角色列表", $(str), 800, 620);
+	layer_show("角色列表", $(str), 700, 550);
 	layerIndex = layer.index;
 	wstro.progressBarShutDown();
 }

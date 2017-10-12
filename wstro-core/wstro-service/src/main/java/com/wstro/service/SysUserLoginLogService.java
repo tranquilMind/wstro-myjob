@@ -30,7 +30,7 @@ public interface SysUserLoginLogService extends IService<SysUserLoginLogEntity> 
 	 *            是否为升序
 	 * @return Page<SysUserLoginLogEntity>
 	 */
-	Page<SysUserLoginLogEntity> getSelf(Integer offset, Integer limit, Long adminId, String loginIp, String sort,
+	Page<SysUserLoginLogEntity> getSelf(Integer offset, Integer limit, String userCode, String sort,
 			Boolean order);
 
 }

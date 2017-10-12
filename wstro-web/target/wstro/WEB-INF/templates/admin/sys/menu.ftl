@@ -77,8 +77,8 @@
                                            data-show-columns="true"
                                            data-url="${rc.contextPath}/admin/sys/menu/list" [#-- 服务器数据URL --]
                                            data-pagination="true"
-                                           data-page-size="20"
-                                           data-page-list="[20, 50, 100, 200]"
+                                           data-page-size="10"
+                                           data-page-list="[10, 20]"
                                            data-side-pagination="server"
                                            data-striped="true"
                                            data-pagination="true"

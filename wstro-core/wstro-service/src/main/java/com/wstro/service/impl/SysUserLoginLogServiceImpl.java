@@ -23,15 +23,14 @@ public class SysUserLoginLogServiceImpl extends ServiceImpl<SysUserLoginLogDao, 
 		implements SysUserLoginLogService {
 
 	@Override
-	public Page<SysUserLoginLogEntity> getSelf(Integer offset, Integer limit, Long adminId, String loginIp, String sort,
+	public Page<SysUserLoginLogEntity> getSelf(Integer offset, Integer limit,String userCode, String sort,
 			Boolean order) {
 		Wrapper<SysUserLoginLogEntity> wrapper = new EntityWrapper<SysUserLoginLogEntity>();
-		wrapper.eq("user_id", adminId);
 		if (StringUtils.isNoneBlank(sort) && null != order) {
 			wrapper.orderBy(sort, order);
 		}
-		if (StringUtils.isNoneBlank(loginIp)) {
-			wrapper.like("login_ip", loginIp);
+		if (StringUtils.isNoneBlank(userCode)) {
+			wrapper.like("user_code", userCode);
 		}
 		Page<SysUserLoginLogEntity> page = new Page<>(offset, limit);
 		return this.selectPage(page, wrapper);

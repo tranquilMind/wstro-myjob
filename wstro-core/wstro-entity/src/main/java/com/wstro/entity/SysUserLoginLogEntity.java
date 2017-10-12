@@ -42,6 +42,12 @@ public class SysUserLoginLogEntity implements Serializable {
 	private Long userId;
 
 	/**
+	 * 用户账号
+	 */
+	@TableField
+	private String userCode;
+	
+	/**
 	 * 操作系统
 	 */
 	@TableField
@@ -100,4 +106,13 @@ public class SysUserLoginLogEntity implements Serializable {
 	public void setBrowser(String browser) {
 		this.browser = browser;
 	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+	
 }

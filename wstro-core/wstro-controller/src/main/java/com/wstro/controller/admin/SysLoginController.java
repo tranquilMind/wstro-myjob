@@ -164,6 +164,7 @@ public class SysLoginController extends AbstractController {
 		entity.setLoginTime(currentUnixTime);
 		entity.setOperatingSystem(HttpUtil.getUserOperatingSystem(request));
 		entity.setUserId(getAdminId());
+		entity.setUserCode(user.getUserCode());
 		entity.setLoginIp(ipAddress);
 		boolean insert = sysUserLoginLogService.insert(entity);
 		if (!insert) { // 这里只能抛异常回滚事务
