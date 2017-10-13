@@ -148,7 +148,7 @@ function menu_update(index, value, row) {
 			if (r.menu.type == "2") {
 				checkRadio("button");
 			}
-			layer_show("修改菜单", $("#showHandle"), 800, 500);
+			layer_show("修改菜单", $("#showHandle"), 800, 600);
 		} else {
 			layer.alert(r.msg, {
 				icon : 2
@@ -279,7 +279,7 @@ function add(s) {
 	radio(); // 要重新生成样式
 	getMenu(0);
 	checkRadio("catalog");
-	layer_show("新建菜单", $(s), 800, 500);
+	layer_show("新建菜单", $(s), 800, 600);
 }
 
 var setting = {

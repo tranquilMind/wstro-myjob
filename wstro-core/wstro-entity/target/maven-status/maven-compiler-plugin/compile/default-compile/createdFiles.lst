@@ -1,6 +1,11 @@
-com\wstro\entity\SysMenuEntity.class
 com\wstro\entity\SysUserRoleEntity.class
+com\wstro\entity\echat\ChatMessageData.class
+com\wstro\entity\echat\ChatMessage.class
+com\wstro\entity\SysMenuEntity.class
+com\wstro\entity\echat\P3ImTSUser.class
 com\wstro\entity\SysUserLoginLogEntity.class
 com\wstro\entity\SysRoleMenuEntity.class
+com\wstro\entity\echat\ChatMessageHistory.class
+com\wstro\entity\echat\P3ImTSBaseUser.class
 com\wstro\entity\SysRoleEntity.class
 com\wstro\entity\SysUserEntity.class

@@ -10,7 +10,6 @@
 <!-- 自定义js -->
 <script src="${rc.contextPath}/statics/js/admin/hplus.js"></script>
 <script src="${rc.contextPath}/statics/js/admin/contabs.js"></script>
-
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg">
 	<!--左侧导航开始-->
@@ -144,5 +143,7 @@
 			</div>
 		</div>
 	</div>
+  [#--在线聊天 --]
+   [#include "/echat/echat.ftl"]
 </body>
 </html>

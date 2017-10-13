@@ -101,7 +101,7 @@
 <script src="${rc.contextPath}/statics/common/bootstrap-table/tableExport.js"></script>
 <script src="${rc.contextPath}/statics/common/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
 <!-- 自定义js -->
-<script src="${rc.contextPath}/statics/js/admin/sys/admin.js"></script>
+<script src="${rc.contextPath}/statics/js/admin/sys/sysLog.js"></script>
 <!-- iCheck -->
 <script src="${rc.contextPath}/statics/common/icheck/icheck.min.js"></script>
 <script src="${rc.contextPath}/statics/common/bootstrap-switch/js/bootstrap-switch.min.js"></script>

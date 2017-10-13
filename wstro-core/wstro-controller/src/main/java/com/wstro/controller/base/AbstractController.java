@@ -2,15 +2,12 @@ package com.wstro.controller.base;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.annotation.Resource;
-
 import com.wstro.util.Constant;
 import com.wstro.util.EhcacheUtil;
 import com.wstro.util.ShiroUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.wstro.entity.SysUserEntity;
