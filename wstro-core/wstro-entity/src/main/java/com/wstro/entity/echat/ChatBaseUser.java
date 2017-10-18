@@ -47,7 +47,7 @@ public class ChatBaseUser implements Serializable {
 	/**
 	 * 好友组id
 	 */
-	@TableId
+	@TableField
 	private Long userFriendGroupId;
 	
 	/**

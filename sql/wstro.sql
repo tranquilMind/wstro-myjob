@@ -202,9 +202,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', '管理员', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '0', '2434387555@qq.com', '13647910242', '1507888801', '0:0:0:0:0:0:0:1', 'upload/adminAvatar/201707/1499675749475head.jpg', '1', '1498801511');
-INSERT INTO `sys_user` VALUES ('7', 'lastone', '测试账号', 'd50b4c0cab140a3310e256d86fd3cd33c02f145635df4694e71df062c1679a8f', '2', 'asd@qq.com', '13456465465', '1499069279', '192.168.1.88', 'upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499069190');
-INSERT INTO `sys_user` VALUES ('8', 'joey', '朱迪', 'bfef4adc39f01b033fe749bb5f28f10b581fef319d34445d21a7bc63fe732fa3', '2', '2434387555@qq.com', '13647910412', '1499670576', '192.168.1.88', 'upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499410874');
+INSERT INTO `sys_user` VALUES ('1', 'admin', '管理员', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '0', '2434387555@qq.com', '13647910242', '1507888801', '0:0:0:0:0:0:0:1', '../upload/adminAvatar/201707/1499675749475head.jpg', '1', '1498801511');
+INSERT INTO `sys_user` VALUES ('7', 'lastone', '测试账号', 'd50b4c0cab140a3310e256d86fd3cd33c02f145635df4694e71df062c1679a8f', '2', 'asd@qq.com', '13456465465', '1499069279', '192.168.1.88', '../upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499069190');
+INSERT INTO `sys_user` VALUES ('8', 'joey', '朱迪', 'bfef4adc39f01b033fe749bb5f28f10b581fef319d34445d21a7bc63fe732fa3', '2', '2434387555@qq.com', '13647910412', '1499670576', '192.168.1.88', '../upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499410874');
 INSERT INTO `sys_user` VALUES ('13', 'rewrewre', 'fdfsf', '1c64ca3b36a4effbee0a8d1210a92cdd73d94d691566a5ddddee626fd267a9b3', '0', '1309459884@qq.com', '15317071350', null, null, null, '1', '1507708574');
 INSERT INTO `sys_user` VALUES ('14', 'eqwe', 'sss', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '0', '1309459884@qq.com', '15317071350', '1507716574', '0:0:0:0:0:0:0:1', null, '1', '1507716372');
 
