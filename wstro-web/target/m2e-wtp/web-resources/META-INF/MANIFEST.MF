@@ -3,7 +3,7 @@ Implementation-Title: wstro-web
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: wangwh18
 Implementation-Vendor-Id: wstro-web
-Build-Jdk: 1.8.0_131
+Build-Jdk: 1.8.0_144
 Implementation-URL: http://projects.spring.io/spring-boot/wstro-parent
  /wstro-web/
 Created-By: Maven Integration for Eclipse

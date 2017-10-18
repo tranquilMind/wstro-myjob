@@ -63,7 +63,8 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/admin/sys/login", "anon");
 		filterChainDefinitionMap.put("/admin/sys/logout", "anon");
 		filterChainDefinitionMap.put("/admin/**", "authc");
-
+		// 设置websocket访问不拦截
+		filterChainDefinitionMap.put("ws://**", "anon");
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		shiroFilterFactoryBean.setLoginUrl("/admin/login.html");
 		// 登录成功后要跳转的链接

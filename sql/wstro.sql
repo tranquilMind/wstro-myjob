@@ -16,41 +16,6 @@ Date: 2017-10-13 18:10:03
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for jp_chat_message_his
--- ----------------------------
-DROP TABLE IF EXISTS `jp_chat_message_his`;
-CREATE TABLE `jp_chat_message_his` (
-  `id` varchar(36) NOT NULL,
-  `msg_type` varchar(50) DEFAULT NULL COMMENT '消息类型',
-  `msg` varchar(1024) DEFAULT NULL COMMENT '消息数据',
-  `from_user` varchar(50) DEFAULT NULL COMMENT '消息发送者',
-  `from_name` varchar(100) DEFAULT NULL COMMENT '发送者的真实姓名',
-  `to_user` varchar(50) DEFAULT NULL COMMENT '消息接收者',
-  `to_name` varchar(100) DEFAULT NULL COMMENT '接收者的真实姓名',
-  `accountid` varchar(36) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `create_by` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of jp_chat_message_his
--- ----------------------------
-INSERT INTO `jp_chat_message_his` VALUES ('053E905ED5A241088B686EC588F98548', 'friend', 'eee', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('115C3CC613EF4E7BA9852F9E2E6CE35E', 'friend', '0000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('18D158EC78FC4C5899DDA94F4023B35C', 'friend', '000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('20254AF789F1486D885DB9D4EF66798C', 'friend', '111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('2236E68595FE47B1BD27BEE77FD21ED8', 'friend', '你好', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('2C2C06A5D2C24CF29A5955C6F5530F64', 'friend', 'dddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('91D83DA4C9064F0DABBAC59C7D55C961', 'friend', 'face[馋嘴] ', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('9B5D86C36B324A4ABF240070521BB9E8', 'friend', 'face[晕] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('B7BD27DF21C9473EA8A09BF6E094FD38', 'friend', '1111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('C8C744D046FA490D8902B9BAAC922327', 'friend', '00000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('CE3EB7D8CD8D40FBB8CA083DEB526C16', 'friend', '99face[悲伤] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('CF572347C607485BAB4F5793E9ADDE75', 'friend', 'ddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `jp_chat_message_his` VALUES ('D4C5F22A6C0E434BB266E7C13BB7BAE2', 'friend', '000000000000000000000', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-
--- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
@@ -582,31 +547,93 @@ INSERT INTO `sys_user_role` VALUES ('84', '13', '15');
 INSERT INTO `sys_user_role` VALUES ('86', '14', '18');
 
 -- ----------------------------
--- Table structure for t_s_base_user
+-- Table structure for echat_user
 -- ----------------------------
-DROP TABLE IF EXISTS `t_s_base_user`;
-CREATE TABLE `t_s_base_user` (
+DROP TABLE IF EXISTS `echat_user`;
+CREATE TABLE `echat_user` (
   `ID` varchar(32) NOT NULL COMMENT 'ID',
-  `activitiSync` smallint(6) DEFAULT NULL COMMENT '同步流程',
-  `browser` varchar(20) DEFAULT NULL COMMENT '浏览器',
-  `password` varchar(100) DEFAULT NULL COMMENT '密码',
-  `realname` varchar(50) DEFAULT NULL COMMENT '真实名字',
-  `signature` blob COMMENT '签名',
-  `status` smallint(6) DEFAULT NULL COMMENT '有效状态',
-  `userkey` varchar(200) DEFAULT NULL COMMENT '用户KEY',
-  `username` varchar(10) NOT NULL COMMENT '用户账号',
-  `delete_flag` smallint(6) DEFAULT NULL COMMENT '删除状态',
+  `sign` varchar(32) DEFAULT NULL COMMENT '签名',
+  `status` smallint(6) DEFAULT NULL COMMENT '在线状态',
+  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
+  `user_friend_id` bigint(20) DEFAULT NULL COMMENT ' 好友id',
+  `user_friend_group_id` bigint(20) DEFAULT NULL COMMENT '好友组id',
+  `user_group_id` bigint(20) DEFAULT NULL COMMENT '用户群组id',
+   `delete_flag` smallint(6) DEFAULT NULL COMMENT '删除状态',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of t_s_base_user
+-- Records of echat_user
 -- ----------------------------
-INSERT INTO `t_s_base_user` VALUES ('402880e74d75c4dd014d75d44af30005', null, null, 'deec3ebf23191eee', 'demo', null, '1', 'demo', 'demo', '0');
-INSERT INTO `t_s_base_user` VALUES ('402881875988e889015988ec36770001', null, null, 'f68bb6f881b0ebe0', '7777', null, '1', 'demo', '777', '1');
-INSERT INTO `t_s_base_user` VALUES ('4028ef81538330cd01538333b7bc0001', null, null, 'fa83c6e9a2006c62', '李四', null, '1', '经理角色', 'lisi', '0');
-INSERT INTO `t_s_base_user` VALUES ('4028ef81563ae5be01563ae92d7f0002', null, null, 'bff95c03433b66af', '999', null, '1', 'demo', '999', '1');
-INSERT INTO `t_s_base_user` VALUES ('8a8ab0b246dc81120146dc8181950052', null, null, 'c44b01947c9e6e3f', '管理员', null, '1', '管理员', 'admin', '0');
-INSERT INTO `t_s_base_user` VALUES ('8a8ab0b246dc81120146dc81819d0053', null, null, 'd47ca58189979651', '张代浩', null, '1', '普通用户', 'scott', '0');
-INSERT INTO `t_s_base_user` VALUES ('8a8ab0b246dc81120146dc8181a10054', null, null, 'f2322ec2fb9f40d1', '采购员', null, '1', '管理员', 'cgy', '1');
-INSERT INTO `t_s_base_user` VALUES ('8a8ab0b246dc81120146dc8181a60055', null, null, 'a324509dc1a3089a', '采购审批员', null, '1', '管理员', 'cgspy', '0');
+INSERT INTO `echat_user` VALUES ('402880e74d75c4dd014d75d44af30005', "今天天气好", 0,1,7,1,1,0);
+INSERT INTO `echat_user` VALUES ('402881875988e889015988ec36770001', "今天天气好", 0,1,8,2,2,0);
+
+-- ----------------------------
+-- Table structure for echat_friend_group
+-- ----------------------------
+DROP TABLE IF EXISTS `echat_friend_group`;
+CREATE TABLE `echat_friend_group` (
+  `group_id` bigint(20) NOT NULL COMMENT 'ID',
+  `group_name` varchar(100) DEFAULT NULL COMMENT '好友组名称',
+   `delete_flag` smallint(6) DEFAULT NULL COMMENT '删除状态',
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of echat_friend_group
+-- ----------------------------
+INSERT INTO `echat_friend_group` VALUES (1, "高中", 0);
+INSERT INTO `echat_friend_group` VALUES (2, "大学", 0);
+
+-- ----------------------------
+-- Table structure for echat_group
+-- ----------------------------
+DROP TABLE IF EXISTS `echat_group`;
+CREATE TABLE `echat_group` (
+  `group_id` bigint(20) NOT NULL COMMENT 'ID',
+  `group_name` varchar(100) DEFAULT NULL COMMENT '群组名称',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '头像缩略图地址',
+  `delete_flag` smallint(6) DEFAULT NULL COMMENT '删除状态',
+  PRIMARY KEY (`group_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of echat_group
+-- ----------------------------
+INSERT INTO `echat_group` VALUES (1, "吃饭群",'upload/adminAvatar/201707/1499675749475head.jpg', 0);
+INSERT INTO `echat_group` VALUES (2, "王者群",'upload/adminAvatar/201707/1499675749475head.jpg', 0);
+
+-- ----------------------------
+-- Table structure for echat_message_his
+-- ----------------------------
+DROP TABLE IF EXISTS `echat_message_his`;
+CREATE TABLE `echat_message_his` (
+  `id` varchar(36) NOT NULL,
+  `msg_type` varchar(50) DEFAULT NULL COMMENT '消息类型',
+  `msg` varchar(1024) DEFAULT NULL COMMENT '消息数据',
+  `from_user` varchar(50) DEFAULT NULL COMMENT '消息发送者',
+  `from_name` varchar(100) DEFAULT NULL COMMENT '发送者的真实姓名',
+  `to_user` varchar(50) DEFAULT NULL COMMENT '消息接收者',
+  `to_name` varchar(100) DEFAULT NULL COMMENT '接收者的真实姓名',
+  `accountid` varchar(36) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `create_by` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of echat_message_his
+-- ----------------------------
+INSERT INTO `echat_message_his` VALUES ('053E905ED5A241088B686EC588F98548', 'friend', 'eee', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('115C3CC613EF4E7BA9852F9E2E6CE35E', 'friend', '0000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('18D158EC78FC4C5899DDA94F4023B35C', 'friend', '000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('20254AF789F1486D885DB9D4EF66798C', 'friend', '111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('2236E68595FE47B1BD27BEE77FD21ED8', 'friend', '你好', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('2C2C06A5D2C24CF29A5955C6F5530F64', 'friend', 'dddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('91D83DA4C9064F0DABBAC59C7D55C961', 'friend', 'face[馋嘴] ', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('9B5D86C36B324A4ABF240070521BB9E8', 'friend', 'face[晕] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('B7BD27DF21C9473EA8A09BF6E094FD38', 'friend', '1111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('C8C744D046FA490D8902B9BAAC922327', 'friend', '00000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('CE3EB7D8CD8D40FBB8CA083DEB526C16', 'friend', '99face[悲伤] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('CF572347C607485BAB4F5793E9ADDE75', 'friend', 'ddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `echat_message_his` VALUES ('D4C5F22A6C0E434BB266E7C13BB7BAE2', 'friend', '000000000000000000000', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);

@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author wangwh18
  *
  */
-@TableName("jp_chat_message_his")
+@TableName("echat_message_his")
 public class ChatMessageHistory implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**

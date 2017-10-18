@@ -144,6 +144,6 @@
 		</div>
 	</div>
   [#--在线聊天 --]
-   [#include "/echat/echat.ftl"]
+   [#include "/admin/echat/echat.ftl"]
 </body>
 </html>

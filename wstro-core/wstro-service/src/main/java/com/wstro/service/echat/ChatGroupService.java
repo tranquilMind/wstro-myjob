@@ -2,23 +2,25 @@ package com.wstro.service.echat;
 
 import java.util.List;
 import java.util.Map;
+
 import com.baomidou.mybatisplus.service.IService;
 import com.wstro.entity.echat.ChatBaseUser;
+import com.wstro.entity.echat.ChatGroup;
 
 /**
- * 聊天用户类
+ * 聊天群组类
  *
  * @author wangwenhao
  * @date 2017-09-28
  *
  */
-public interface TsBaseUserService extends IService<ChatBaseUser> {
+public interface ChatGroupService extends IService<ChatGroup> {
 	/**
-	 * 查询用户类列表
+	 * 查询聊天群组类列表
 	 * 
 	 * @param map
 	 *            Map
-	 * @return List<P3ImTSBaseUser>
+	 * @return List<ChatGroup>
 	 */
-	List<ChatBaseUser> queryList(Map<String, Object> map);
+	List<ChatGroup> queryList(Map<String, Object> map);
 }

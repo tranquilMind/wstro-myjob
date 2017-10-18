@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 import com.wstro.controller.base.AbstractController;
 import com.wstro.entity.SysUserEntity;
-import com.wstro.entity.echat.P3ImTSBaseUser;
+import com.wstro.entity.echat.ChatBaseUser;
 import com.wstro.service.echat.TsBaseUserService;
 import com.wstro.util.R;
 import com.wstro.util.ShiroUtils;
@@ -44,21 +44,21 @@ public class ImController extends AbstractController {
 	@RequestMapping(params = { "getUsers" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public R getUsers(HttpServletResponse response, HttpServletRequest request) throws Exception {
 		SysUserEntity u = getAdmin();		
-		List<P3ImTSBaseUser> imTSUsers = tsBaseUserService.queryList(new HashMap<String, Object>());
+		List<ChatBaseUser> imTSUsers = tsBaseUserService.queryList(new HashMap<String, Object>());
 		for (int i = 0; i < imTSUsers.size(); i++) {
-			if (((P3ImTSBaseUser) imTSUsers.get(i)).getId().equals(getAdminId().toString())) {
+			if (((ChatBaseUser) imTSUsers.get(i)).getId().equals(getAdminId().toString())) {
 				imTSUsers.remove(i);
 			}
 		}
 		JSONObject jsonObjectData = new JSONObject();
-		JSONObject jsonObject1 = new JSONObject();
-		jsonObject1.put("username", u.getUsername());
-		jsonObject1.put("id", getAdminId());
-		jsonObject1.put("status", "online");
-		jsonObject1.put("sign", "JEECG很棒!");
-		jsonObject1.put("avatar", "http://cdn.firstlinkapp.com/upload/2016_6/1465575923433_33812.jpg");
-		jsonObjectData.put("mine", jsonObject1);
-		jsonObjectData.put("friend", "");
+		JSONObject mineData = new JSONObject();
+		mineData.put("username", u.getUsername());
+		mineData.put("id", getAdminId());
+		mineData.put("status", "online");
+		mineData.put("sign", "JEECG很棒!");
+		mineData.put("avatar", u.getAvatarUrl());
+		jsonObjectData.put("mine", mineData);
+		jsonObjectData.put("friend", imTSUsers);
 		jsonObjectData.put("group", "");
 		return R.ok().put("data", jsonObjectData);
 	}

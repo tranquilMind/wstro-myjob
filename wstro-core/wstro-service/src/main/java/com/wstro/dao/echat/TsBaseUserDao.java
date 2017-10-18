@@ -1,7 +1,7 @@
 package com.wstro.dao.echat;
 
 import com.wstro.util.BaseDao;
-import com.wstro.entity.echat.P3ImTSBaseUser;
+import com.wstro.entity.echat.ChatBaseUser;
 
 /**
  * 聊天基础用户类
@@ -9,6 +9,6 @@ import com.wstro.entity.echat.P3ImTSBaseUser;
  * @author wangwenhao
  *
  */
-public interface TsBaseUserDao extends BaseDao<P3ImTSBaseUser> {
+public interface TsBaseUserDao extends BaseDao<ChatBaseUser> {
 
 }

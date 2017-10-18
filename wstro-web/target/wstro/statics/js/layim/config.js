@@ -1,8 +1,7 @@
-//layim聊天组件start
 //websocket 配置
 var chatIp = "localhost";
 var id = "";
-jQuery.post("chat/imController.do?getUserid", {
+jQuery.post("$!{basePath}/chat/imController.do?getUserid", {
 
 }, function (text) {
     id = text.id;
@@ -19,8 +18,8 @@ layui.use('layim', function(layim){
     layim.config({
         //初始化接口
         init: {
-            //url: '$!{basePath}/content/chat/demo/json/getList.json'
-            url: 'chat/imController.do?getUsers'
+            url: '$!{basePath}/echat/demo/json/getList.json'
+            //url: 'chat/imController.do?getUsers'
             ,data: {}
         }
 
@@ -29,23 +28,23 @@ layui.use('layim', function(layim){
 
         //查看群员接口
         ,members: {
-            url: 'echat/demo/json/getMembers.json'
+            url: '$!{basePath}/echat/demo/json/getMembers.json'
             ,data: {}
         }
         ,uploadImage: {
-            url: 'chat/imController.do?uploadImage' //（返回的数据格式见下文）
+            url: '$!{basePath}/chat/imController.do?uploadImage' //（返回的数据格式见下文）
             ,type: 'post' //默认post
         }
         ,uploadFile: {
-            url: 'chat/imController.do?uploadFile' //（返回的数据格式见下文）
+            url: '$!{basePath}/chat/imController.do?uploadFile' //（返回的数据格式见下文）
             ,type: '' //默认post
         }
-        //,skin: ['http://cdn.firstlinkapp.com/upload/2016_4/1461747766565_14690.jpg'] //皮肤
+        //,skin: ['http://cdn.firstlinkapp.com/upload/2016_4/1461747766565_14690.jpg'] //新增皮肤
         ,title:"在线聊天"
         ,maxLength:3000
         ,brief:false
         ,isgroup: false //是否开启群组
-        ,chatLog: 'chat/chatMessageHistory.do?from='+id //聊天记录地址
+        ,chatLog: '$!{basePath}/chat/chatMessageHistory.do?from='+id //聊天记录地址
         ,find: './demo/find.html'
         ,copyright: true //是否授权
     });
