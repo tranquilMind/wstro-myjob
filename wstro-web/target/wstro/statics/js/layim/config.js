@@ -1,7 +1,7 @@
 //websocket 配置
 var chatIp = "localhost";
 var id = "";
-jQuery.post("$!{basePath}/chat/imController.do?getUserid", {
+jQuery.post("chat/imController.do?getUserid", {
 
 }, function (text) {
     id = text.id;
@@ -18,34 +18,31 @@ layui.use('layim', function(layim){
     layim.config({
         //初始化接口
         init: {
-            url: '$!{basePath}/echat/demo/json/getList.json'
-            //url: 'chat/imController.do?getUsers'
-            ,data: {}
+            url: 'chat/imController.do?getUsers'
+            ,data: {}                 //额外参数
         }
-
-        //简约模式（不显示主面板）
-        //,brief: true
-
+        //简约模式（显示主面板）
+        ,brief: false
         //查看群员接口
         ,members: {
-            url: '$!{basePath}/echat/demo/json/getMembers.json'
+            url: 'echat/demo/json/getMembers.json'
             ,data: {}
         }
         ,uploadImage: {
-            url: '$!{basePath}/chat/imController.do?uploadImage' //（返回的数据格式见下文）
+            url: 'chat/imController.do?uploadImage' //（返回的数据格式见下文）
             ,type: 'post' //默认post
         }
         ,uploadFile: {
-            url: '$!{basePath}/chat/imController.do?uploadFile' //（返回的数据格式见下文）
+            url: 'chat/imController.do?uploadFile' //（返回的数据格式见下文）
             ,type: '' //默认post
         }
         //,skin: ['http://cdn.firstlinkapp.com/upload/2016_4/1461747766565_14690.jpg'] //新增皮肤
         ,title:"在线聊天"
         ,maxLength:3000
-        ,brief:false
-        ,isgroup: false //是否开启群组
-        ,chatLog: '$!{basePath}/chat/chatMessageHistory.do?from='+id //聊天记录地址
-        ,find: './demo/find.html'
+        ,isfriend: true //是否开启好友（默认true，即开启）
+        ,isgroup: true //是否开启群组
+        ,chatLog: 'chat/chatMessageHistory.do?from='+id //聊天记录地址
+        ,find: './demo/find.html'            //查找好友/群的地址（如果未填则不显示）
         ,copyright: true //是否授权
     });
 

@@ -1,4 +1,4 @@
-E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\echat\P3ImTSBaseUser.java
+E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\echat\ChatFriendGroup.java
 E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\SysRoleMenuEntity.java
 E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\SysUserEntity.java
 E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\SysRoleEntity.java
@@ -8,4 +8,5 @@ E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro
 E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\SysMenuEntity.java
 E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\SysUserRoleEntity.java
 E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\echat\ChatMessageData.java
-E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\echat\P3ImTSUser.java
+E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\echat\ChatGroup.java
+E:\SpringBoot-master\wstro-myjob\wstro-core\wstro-entity\src\main\java\com\wstro\entity\echat\ChatBaseUser.java

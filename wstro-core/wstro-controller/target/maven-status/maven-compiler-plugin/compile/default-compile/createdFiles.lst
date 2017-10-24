@@ -10,5 +10,4 @@ com\wstro\controller\MailController.class
 com\wstro\controller\admin\SysLoginController.class
 com\wstro\controller\MainsiteErrorController.class
 com\wstro\controller\admin\SysPageController.class
-com\wstro\controller\echat\LayimIndexController.class
 com\wstro\controller\echat\ChatMessageHistoryController.class

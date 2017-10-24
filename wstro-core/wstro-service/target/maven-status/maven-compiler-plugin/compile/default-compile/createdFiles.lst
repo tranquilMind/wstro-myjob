@@ -1,6 +1,7 @@
 com\wstro\service\impl\SysUserServiceImpl.class
 com\wstro\service\impl\SysRoleServiceImpl.class
 com\wstro\service\SysUserService.class
+com\wstro\service\echat\ChatGroupService.class
 com\wstro\service\echat\TsBaseUserService.class
 com\wstro\service\SysRoleService.class
 com\wstro\service\impl\SysUserLoginLogServiceImpl.class
@@ -11,14 +12,19 @@ com\wstro\dao\SysUserRoleDao.class
 com\wstro\service\echat\ChatMessageHistoryService.class
 com\wstro\dao\SysRoleDao.class
 com\wstro\service\SysMenuService.class
+com\wstro\service\echat\ChatFriendGroupService.class
 com\wstro\service\impl\SysUserRoleServiceImpl.class
 com\wstro\service\impl\SysMenuServiceImpl.class
+com\wstro\dao\echat\ChatGroupDao.class
 com\wstro\service\SysUserLoginLogService.class
 com\wstro\service\SysRoleMenuService.class
 com\wstro\dao\SysUserLoginLogDao.class
+com\wstro\service\impl\echat\ChatFriendGroupServiceImpl.class
 com\wstro\service\SysUserRoleService.class
+com\wstro\dao\echat\ChatFriendGroupDao.class
 com\wstro\dao\SysMenuDao.class
 com\wstro\service\impl\SysRoleMenuServiceImpl.class
+com\wstro\service\impl\echat\ChatGroupServiceImpl.class
 com\wstro\service\impl\echat\TsBaseUserServiceImpl.class
 com\wstro\dao\echat\ChatMessageHistoryDao.class
 com\wstro\dao\SysUserDao.class
