@@ -2,19 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wstro.dao.echat.TsBaseUserDao">
 
+   <!-- 查询通讯用户列表 -->
    <select id="queryList" resultType="ChatBaseUser">
-		select * from echat_user m where m.delete_flag =0 
+		select * from layim_user m where m.delete_flag =0 
 		<if test="null!=userId">
 			and m.user_id = #{userId}
 		</if>
-		<if test="null!=userFriendId">
-			and m.user_friend_id = #{userFriendId}
+	</select>
+	
+	<!-- 根据好友组id 查询好友列表 -->
+	<select id="queryFriendListByGroupId" resultType="ChatBaseUser">
+		 select m.* from layim_user m INNER JOIN layim_user_friend f on f.friend_id = m.user_id and f.delete_flag=0 
+          where m.delete_flag=0 
+		<if test="groupId!=null">
+			and f.friend_group_id = #{groupId}
 		</if>
-		<if test="null!=userFriendGroupId">
-			and m.user_friend_group_id = #{userFriendGroupId}
-		</if>
-		<if test="null!=userGroupId">
-			and m.user_group_id = #{userGroupId}
+	</select>
+	
+	<!-- 根据群组id 查询组员列表 -->
+	<select id="queryUserListByGroupId" resultType="ChatBaseUser">
+		 select m.* from layim_user m INNER JOIN layim_user_group f on f.user_id = m.user_id and f.delete_flag=0 
+         where m.delete_flag=0 
+		<if test="groupId!=null">
+			and f.group_id = #{groupId}
 		</if>
 	</select>
 	

@@ -202,9 +202,9 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', '管理员', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '0', '2434387555@qq.com', '13647910242', '1507888801', '0:0:0:0:0:0:0:1', '../upload/adminAvatar/201707/1499675749475head.jpg', '1', '1498801511');
-INSERT INTO `sys_user` VALUES ('7', 'lastone', '测试账号', 'd50b4c0cab140a3310e256d86fd3cd33c02f145635df4694e71df062c1679a8f', '2', 'asd@qq.com', '13456465465', '1499069279', '192.168.1.88', '../upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499069190');
-INSERT INTO `sys_user` VALUES ('8', 'joey', '朱迪', 'bfef4adc39f01b033fe749bb5f28f10b581fef319d34445d21a7bc63fe732fa3', '2', '2434387555@qq.com', '13647910412', '1499670576', '192.168.1.88', '../upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499410874');
+INSERT INTO `sys_user` VALUES ('1', 'admin', '管理员', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '0', '2434387555@qq.com', '13647910242', '1507888801', '0:0:0:0:0:0:0:1', 'upload/adminAvatar/201707/1499675749475head.jpg', '1', '1498801511');
+INSERT INTO `sys_user` VALUES ('7', 'lastone', '测试账号', 'd50b4c0cab140a3310e256d86fd3cd33c02f145635df4694e71df062c1679a8f', '2', 'asd@qq.com', '13456465465', '1499069279', '192.168.1.88', 'upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499069190');
+INSERT INTO `sys_user` VALUES ('8', 'joey', '朱迪', 'bfef4adc39f01b033fe749bb5f28f10b581fef319d34445d21a7bc63fe732fa3', '2', '2434387555@qq.com', '13647910412', '1499670576', '192.168.1.88', 'upload/adminAvatar/201707/1499675749475head.jpg', '1', '1499410874');
 INSERT INTO `sys_user` VALUES ('13', 'rewrewre', 'fdfsf', '1c64ca3b36a4effbee0a8d1210a92cdd73d94d691566a5ddddee626fd267a9b3', '0', '1309459884@qq.com', '15317071350', null, null, null, '1', '1507708574');
 INSERT INTO `sys_user` VALUES ('14', 'eqwe', 'sss', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', '0', '1309459884@qq.com', '15317071350', '1507716574', '0:0:0:0:0:0:0:1', null, '1', '1507716372');
 
@@ -547,67 +547,116 @@ INSERT INTO `sys_user_role` VALUES ('84', '13', '15');
 INSERT INTO `sys_user_role` VALUES ('86', '14', '18');
 
 -- ----------------------------
--- Table structure for echat_user
+-- Table structure for layim_user
 -- ----------------------------
-DROP TABLE IF EXISTS `echat_user`;
-CREATE TABLE `echat_user` (
-  `ID` varchar(32) NOT NULL COMMENT 'ID',
-  `sign` varchar(32) DEFAULT NULL COMMENT '签名',
-  `status` smallint(6) DEFAULT NULL COMMENT '在线状态',
-  `user_id` bigint(20) DEFAULT NULL COMMENT '用户id',
-  `user_friend_id` bigint(20) DEFAULT NULL COMMENT ' 好友id',
-  `user_friend_group_id` bigint(20) DEFAULT NULL COMMENT '好友组id',
-  `user_group_id` bigint(20) DEFAULT NULL COMMENT '用户群组id',
-   `delete_flag` smallint(6) DEFAULT NULL COMMENT '删除状态',
-  PRIMARY KEY (`ID`)
+drop table if exists layim_user;
+create table layim_user
+(
+   user_id              bigint(20) not null comment '用户id',
+   sign                 varchar(100) comment '用户签名',
+   status               smallint(6) comment '在线状态',
+   delete_flag          smallint(6) comment '是否删除',
+   create_time         int(11) DEFAULT NULL comment '创建时间',
+   create_user_id       bigint(20) comment '创建人id',
+   update_time          int(11) DEFAULT NULL comment '修改时间',
+   update_user_id       bigint(20) comment '修改人id',
+   primary key (user_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of layim_user
+-- ----------------------------
+INSERT INTO `layim_user`(user_id,sign,status,delete_flag,create_time,create_user_id) VALUES (1, "今天天气好", 0,0,'1507704046',1);
+
+-- ----------------------------
+-- Table structure for layim_user_group
+-- ----------------------------
+drop table if exists layim_user_group;
+create table layim_user_group
+(
+   PKID                 bigint(20) not null comment '主键',
+   user_id              bigint(20) comment '用户id',
+   group_id             bigint(20) comment '群组id',
+   delete_flag          smallint(6) comment '是否删除',
+   primary key (PKID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of echat_user
+-- Records of layim_user_group
 -- ----------------------------
-INSERT INTO `echat_user` VALUES ('402880e74d75c4dd014d75d44af30005', "今天天气好", 0,1,7,1,1,0);
-INSERT INTO `echat_user` VALUES ('402881875988e889015988ec36770001', "今天天气好", 0,1,8,2,2,0);
+INSERT INTO `layim_user_group` VALUES (1, 1, 1,0);
+INSERT INTO `layim_user_group` VALUES (2, 1, 2,0);
 
 -- ----------------------------
--- Table structure for echat_friend_group
+-- Table structure for layim_group
 -- ----------------------------
-DROP TABLE IF EXISTS `echat_friend_group`;
-CREATE TABLE `echat_friend_group` (
-  `group_id` bigint(20) NOT NULL COMMENT 'ID',
-  `group_name` varchar(100) DEFAULT NULL COMMENT '好友组名称',
-   `delete_flag` smallint(6) DEFAULT NULL COMMENT '删除状态',
-  PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+drop table if exists layim_group;
+create table layim_group
+(
+   group_id             bigint(20) not null comment '组别id',
+   group_name           varchar(50) comment '组别名称',
+   avatar                  varchar(255) DEFAULT NULL COMMENT '头像缩略图地址',
+   delete_flag          smallint(6) comment '是否删除',
+   create_time          int(11) DEFAULT NULL comment '创建时间',
+   create_user_id       bigint(20) comment '创建人id',
+   update_time          int(11) DEFAULT NULL comment '修改时间',
+   update_user_id       bigint(20) comment '修改人id',
+   primary key (group_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of echat_friend_group
+-- Records of layim_group
 -- ----------------------------
-INSERT INTO `echat_friend_group` VALUES (1, "高中", 0);
-INSERT INTO `echat_friend_group` VALUES (2, "大学", 0);
+INSERT INTO `layim_group`(group_id,group_name,avatar,delete_flag,create_time,create_user_id) VALUES (1, "吃喝玩乐",'upload/adminAvatar/201707/1499675749475head.jpg', 0,'1507704046',1);
+INSERT INTO `layim_group`(group_id,group_name,avatar,delete_flag,create_time,create_user_id) VALUES (2, "单身俱乐部", 'upload/adminAvatar/201707/1499675749475head.jpg',0,'1507704046',1);
 
 -- ----------------------------
--- Table structure for echat_group
+-- Table structure for layim_user_friend
 -- ----------------------------
-DROP TABLE IF EXISTS `echat_group`;
-CREATE TABLE `echat_group` (
-  `group_id` bigint(20) NOT NULL COMMENT 'ID',
-  `group_name` varchar(100) DEFAULT NULL COMMENT '群组名称',
-  `avatar` varchar(255) DEFAULT NULL COMMENT '头像缩略图地址',
-  `delete_flag` smallint(6) DEFAULT NULL COMMENT '删除状态',
-  PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+drop table if exists layim_user_friend;
+create table layim_user_friend
+(
+   PKID                 bigint(20) not null comment '主键',
+   user_id              bigint(20) comment '用户id',
+   friend_id            bigint(20) comment '好友id',
+   friend_group_id      bigint(20) comment '好友所在组别',
+   delete_flag          smallint(6) comment '是否删除',
+   primary key (PKID)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of echat_group
+-- Records of layim_user_friend
 -- ----------------------------
-INSERT INTO `echat_group` VALUES (1, "吃饭群",'upload/adminAvatar/201707/1499675749475head.jpg', 0);
-INSERT INTO `echat_group` VALUES (2, "王者群",'upload/adminAvatar/201707/1499675749475head.jpg', 0);
+INSERT INTO `layim_user_friend` VALUES (1, 1, 7,1,0);
+INSERT INTO `layim_user_friend` VALUES (2, 1, 8,2,0);
 
 -- ----------------------------
--- Table structure for echat_message_his
+-- Table structure for layim_friend_group
 -- ----------------------------
-DROP TABLE IF EXISTS `echat_message_his`;
-CREATE TABLE `echat_message_his` (
+drop table if exists layim_friend_group;
+create table layim_friend_group
+(
+   group_id             bigint(20) not null comment '组别id',
+   group_name           varchar(50) comment '组别名称',
+   delete_flag          smallint(6) comment '是否删除',
+   create_time          int(11) DEFAULT NULL comment '创建时间',
+   create_user_id       bigint(20) comment '创建人id',
+   update_time          int(11) DEFAULT NULL comment '修改时间',
+   update_user_id       bigint(20) comment '修改人id',
+   primary key (group_id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of layim_friend_group
+-- ----------------------------
+INSERT INTO `layim_friend_group`(group_id,group_name,delete_flag,create_time,create_user_id) VALUES (1, '高中', 0,'1507704046',1);
+INSERT INTO `layim_friend_group`(group_id,group_name,delete_flag,create_time,create_user_id) VALUES (2, '大学', 0,'1507704046',1);
+
+-- ----------------------------
+-- Table structure for layim_message_his
+-- ----------------------------
+DROP TABLE IF EXISTS `layim_message_his`;
+CREATE TABLE `layim_message_his` (
   `id` varchar(36) NOT NULL,
   `msg_type` varchar(50) DEFAULT NULL COMMENT '消息类型',
   `msg` varchar(1024) DEFAULT NULL COMMENT '消息数据',
@@ -616,24 +665,24 @@ CREATE TABLE `echat_message_his` (
   `to_user` varchar(50) DEFAULT NULL COMMENT '消息接收者',
   `to_name` varchar(100) DEFAULT NULL COMMENT '接收者的真实姓名',
   `accountid` varchar(36) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
+  `create_date`  int(11) DEFAULT NULL DEFAULT NULL,
   `create_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of echat_message_his
+-- Records of layim_message_his
 -- ----------------------------
-INSERT INTO `echat_message_his` VALUES ('053E905ED5A241088B686EC588F98548', 'friend', 'eee', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('115C3CC613EF4E7BA9852F9E2E6CE35E', 'friend', '0000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('18D158EC78FC4C5899DDA94F4023B35C', 'friend', '000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('20254AF789F1486D885DB9D4EF66798C', 'friend', '111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('2236E68595FE47B1BD27BEE77FD21ED8', 'friend', '你好', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('2C2C06A5D2C24CF29A5955C6F5530F64', 'friend', 'dddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('91D83DA4C9064F0DABBAC59C7D55C961', 'friend', 'face[馋嘴] ', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('9B5D86C36B324A4ABF240070521BB9E8', 'friend', 'face[晕] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('B7BD27DF21C9473EA8A09BF6E094FD38', 'friend', '1111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('C8C744D046FA490D8902B9BAAC922327', 'friend', '00000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('CE3EB7D8CD8D40FBB8CA083DEB526C16', 'friend', '99face[悲伤] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('CF572347C607485BAB4F5793E9ADDE75', 'friend', 'ddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
-INSERT INTO `echat_message_his` VALUES ('D4C5F22A6C0E434BB266E7C13BB7BAE2', 'friend', '000000000000000000000', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('053E905ED5A241088B686EC588F98548', 'friend', 'eee', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('115C3CC613EF4E7BA9852F9E2E6CE35E', 'friend', '0000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('18D158EC78FC4C5899DDA94F4023B35C', 'friend', '000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('20254AF789F1486D885DB9D4EF66798C', 'friend', '111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('2236E68595FE47B1BD27BEE77FD21ED8', 'friend', '你好', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('2C2C06A5D2C24CF29A5955C6F5530F64', 'friend', 'dddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('91D83DA4C9064F0DABBAC59C7D55C961', 'friend', 'face[馋嘴] ', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('9B5D86C36B324A4ABF240070521BB9E8', 'friend', 'face[晕] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('B7BD27DF21C9473EA8A09BF6E094FD38', 'friend', '1111', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('C8C744D046FA490D8902B9BAAC922327', 'friend', '00000', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('CE3EB7D8CD8D40FBB8CA083DEB526C16', 'friend', '99face[悲伤] ', '8a8ab0b246dc81120146dc8181950052', '管理员', '8a8ab0b246dc81120146dc81819d0053', '张代浩', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('CF572347C607485BAB4F5793E9ADDE75', 'friend', 'ddd', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);
+INSERT INTO `layim_message_his` VALUES ('D4C5F22A6C0E434BB266E7C13BB7BAE2', 'friend', '000000000000000000000', '402880e74d75c4dd014d75d44af30005', 'demo', '8a8ab0b246dc81120146dc8181950052', '管理员', null, null, null);

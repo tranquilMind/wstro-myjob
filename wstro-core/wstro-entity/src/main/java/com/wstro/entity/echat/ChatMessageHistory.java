@@ -12,7 +12,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * @author wangwh18
  *
  */
-@TableName("echat_message_his")
+@TableName("layim_message_his")
 public class ChatMessageHistory implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**
@@ -55,7 +55,7 @@ public class ChatMessageHistory implements Serializable {
 	private String accountid;
 	
 	@TableField
-	private Date createDate;
+	private Long createDate;
 	
 	@TableField
 	private String createBy;
@@ -124,11 +124,11 @@ public class ChatMessageHistory implements Serializable {
 		this.accountid = accountid;
 	}
 
-	public Date getCreateDate() {
+	public Long getCreateDate() {
 		return this.createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(Long createDate) {
 		this.createDate = createDate;
 	}
 

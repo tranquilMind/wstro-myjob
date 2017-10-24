@@ -16,7 +16,7 @@ import com.wstro.entity.echat.ChatGroup;
  */
 public interface ChatGroupService extends IService<ChatGroup> {
 	/**
-	 * 查询聊天群组类列表
+	 * 根据userid查询聊天群组类列表
 	 * 
 	 * @param map
 	 *            Map

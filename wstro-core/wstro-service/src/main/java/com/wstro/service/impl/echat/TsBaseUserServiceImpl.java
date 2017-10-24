@@ -27,4 +27,14 @@ public class TsBaseUserServiceImpl extends ServiceImpl<TsBaseUserDao, ChatBaseUs
 		return baseMapper.queryList(map);
 	}
 
+	@Override
+	public List<ChatBaseUser> queryFriendListByGroupId(Map<String, Object> map) {
+		return baseMapper.queryFriendListByGroupId(map);
+	}
+
+	@Override
+	public List<ChatBaseUser> queryUserListByGroupId(Map<String, Object> map) {
+		return baseMapper.queryUserListByGroupId(map);
+	}
+
 }

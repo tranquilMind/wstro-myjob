@@ -3,7 +3,12 @@
 <mapper namespace="com.wstro.dao.echat.ChatGroupDao">
    
     <select id="queryList" resultType="ChatGroup">
-		select * from echat_group m where m.delete_flag =0
+		select m.* from layim_group m 
+	    INNER JOIN layim_user_group g on g.group_id = m.group_id and g.delete_flag=0 
+        where m.delete_flag =0 
+        <if test="null!=userId">
+			and g.user_id = #{userId}
+		</if>
 	</select>
 	
 </mapper>

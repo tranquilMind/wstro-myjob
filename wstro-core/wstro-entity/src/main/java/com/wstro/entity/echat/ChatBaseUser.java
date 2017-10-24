@@ -1,7 +1,6 @@
 package com.wstro.entity.echat;
 
 import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -13,14 +12,14 @@ import com.baomidou.mybatisplus.enums.IdType;
  * @author wangwh18
  *
  */
-@TableName("echat_user")
+@TableName("layim_user")
 public class ChatBaseUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 聊天用户ID
 	 */
 	@TableId(type = IdType.AUTO)
-	private String id;
+	private Long userId;
 	/**
 	 * 签名
 	 */
@@ -33,40 +32,41 @@ public class ChatBaseUser implements Serializable {
 	private Integer status;
 	
 	/**
-	 * 用户ID
-	 */
-	@TableField
-	private Long userId;
-	
-	/**
-	 *  好友id
-	 */
-	@TableField
-	private Long userFriendId;
-	
-	/**
-	 * 好友组id
-	 */
-	@TableField
-	private Long userFriendGroupId;
-	
-	/**
-	 * 用户群组id
-	 */
-	@TableField
-	private Long userGroupId;
-	/**
 	 * 删除状态
 	 */
 	@TableField
 	private Integer deleteFlag;
 
-	public String getId() {
-		return this.id;
+	/**
+	 * 创建时间
+	 */
+	@TableField
+	private Long createTime;
+	
+	/**
+	 * 创建人id
+	 */
+	@TableField
+	private Long createUserId;
+	
+	/**
+	 * 修改时间
+	 */
+	@TableField
+	private Long updateTime;
+	
+	/**
+	 * 修改人id
+	 */
+	@TableField
+	private Long updateUserId;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getSign() {
@@ -85,38 +85,6 @@ public class ChatBaseUser implements Serializable {
 		this.status = status;
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public Long getUserFriendId() {
-		return userFriendId;
-	}
-
-	public void setUserFriendId(Long userFriendId) {
-		this.userFriendId = userFriendId;
-	}
-
-	public Long getUserFriendGroupId() {
-		return userFriendGroupId;
-	}
-
-	public void setUserFriendGroupId(Long userFriendGroupId) {
-		this.userFriendGroupId = userFriendGroupId;
-	}
-
-	public Long getUserGroupId() {
-		return userGroupId;
-	}
-
-	public void setUserGroupId(Long userGroupId) {
-		this.userGroupId = userGroupId;
-	}
-
 	public Integer getDeleteFlag() {
 		return deleteFlag;
 	}
@@ -124,5 +92,38 @@ public class ChatBaseUser implements Serializable {
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
 	}
-   
+
+	public Long getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Long createTime) {
+		this.createTime = createTime;
+	}
+
+	public Long getCreateUserId() {
+		return createUserId;
+	}
+
+	public void setCreateUserId(Long createUserId) {
+		this.createUserId = createUserId;
+	}
+
+	public Long getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Long updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public Long getUpdateUserId() {
+		return updateUserId;
+	}
+
+	public void setUpdateUserId(Long updateUserId) {
+		this.updateUserId = updateUserId;
+	}
+	
+	
 }

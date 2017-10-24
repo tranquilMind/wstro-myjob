@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.enums.IdType;
  * @author wangwh18
  *
  */
-@TableName("echat_friend_group")
+@TableName("layim_friend_group")
 public class ChatFriendGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/**
@@ -34,6 +34,30 @@ public class ChatFriendGroup implements Serializable {
 	@TableField
 	private Integer deleteFlag;
 
+	/**
+	 * 创建时间
+	 */
+	@TableField
+	private Long createTime;
+	
+	/**
+	 * 创建人id
+	 */
+	@TableField
+	private Long createUserId;
+	
+	/**
+	 * 修改时间
+	 */
+	@TableField
+	private Long updateTime;
+	
+	/**
+	 * 修改人id
+	 */
+	@TableField
+	private Long updateUserId;
+	
 	public Long getGroupId() {
 		return groupId;
 	}
@@ -56,6 +80,38 @@ public class ChatFriendGroup implements Serializable {
 
 	public void setDeleteFlag(Integer deleteFlag) {
 		this.deleteFlag = deleteFlag;
+	}
+
+	public Long getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Long createTime) {
+		this.createTime = createTime;
+	}
+
+	public Long getCreateUserId() {
+		return createUserId;
+	}
+
+	public void setCreateUserId(Long createUserId) {
+		this.createUserId = createUserId;
+	}
+
+	public Long getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Long updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public Long getUpdateUserId() {
+		return updateUserId;
+	}
+
+	public void setUpdateUserId(Long updateUserId) {
+		this.updateUserId = updateUserId;
 	}
 
 }

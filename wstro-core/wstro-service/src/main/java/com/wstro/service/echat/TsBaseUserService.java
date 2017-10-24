@@ -21,4 +21,22 @@ public interface TsBaseUserService extends IService<ChatBaseUser> {
 	 * @return List<P3ImTSBaseUser>
 	 */
 	List<ChatBaseUser> queryList(Map<String, Object> map);
+	
+	/**
+	 * 根据好友组查询好友列表
+	 * 
+	 * @param map
+	 *            Map
+	 * @return List<P3ImTSBaseUser>
+	 */
+	List<ChatBaseUser> queryFriendListByGroupId(Map<String, Object> map);
+	
+	/**
+	 * 根据群组id 查询组员列表
+	 * 
+	 * @param map
+	 *            Map
+	 * @return List<P3ImTSBaseUser>
+	 */
+	List<ChatBaseUser> queryUserListByGroupId(Map<String, Object> map);
 }

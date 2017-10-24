@@ -2,6 +2,8 @@ package com.wstro.controller.echat;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,19 +46,18 @@ public class ImController extends AbstractController {
 	@RequestMapping(params = { "getUsers" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public R getUsers(HttpServletResponse response, HttpServletRequest request) throws Exception {
 		SysUserEntity u = getAdmin();		
-		List<ChatBaseUser> imTSUsers = tsBaseUserService.queryList(new HashMap<String, Object>());
-		for (int i = 0; i < imTSUsers.size(); i++) {
-			if (((ChatBaseUser) imTSUsers.get(i)).getId().equals(getAdminId().toString())) {
-				imTSUsers.remove(i);
-			}
-		}
-		JSONObject jsonObjectData = new JSONObject();
+		//获取当前登录用户对应的echat用户
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("userId", getAdminId());
+		List<ChatBaseUser> imTSUsers = tsBaseUserService.queryList(param);
+		//定义json装载登录用户信息		
 		JSONObject mineData = new JSONObject();
 		mineData.put("username", u.getUsername());
 		mineData.put("id", getAdminId());
-		mineData.put("status", "online");
+		mineData.put("status", imTSUsers.get(0));
 		mineData.put("sign", "JEECG很棒!");
-		mineData.put("avatar", u.getAvatarUrl());
+		mineData.put("avatar", "../"+u.getAvatarUrl());
+		JSONObject jsonObjectData = new JSONObject();
 		jsonObjectData.put("mine", mineData);
 		jsonObjectData.put("friend", imTSUsers);
 		jsonObjectData.put("group", "");
