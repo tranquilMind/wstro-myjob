@@ -3,7 +3,7 @@
 <mapper namespace="com.wstro.dao.echat.ChatFriendGroupDao">
 	
 	<select id="queryList" resultType="ChatFriendGroup">
-		select m.* from layim_friend_group m 
+		select m.* from layim_friend_group m  
 		INNER JOIN layim_user_friend f on f.friend_group_id = m.group_id and f.delete_flag=0 
 		where m.delete_flag =0 
 		<if test="null!=userId">
